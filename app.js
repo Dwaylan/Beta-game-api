@@ -41,6 +41,13 @@ app.use((req, res, next) => {
   next();
 });
 
+// Mongoose connection
+mongoose.connect(
+  "mongodb+srv://Dwaylan:" +
+    process.env.MONGO_ATLAS_PASSWORD +
+    "@beta-game-rest-api.xwhsr7t.mongodb.net/?retryWrites=true&w=majority&appName=beta-game-rest-api"
+);
+
 // the use method sets up middlewear to forward requests.
 // Below passes two paramters. The first is a string and the second is a file.
 // It basically reads, anything that has the string "/attacks" is being handled by "attachRoute"
