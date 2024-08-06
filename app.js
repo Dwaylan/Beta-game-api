@@ -45,7 +45,10 @@ app.use((req, res, next) => {
 mongoose.connect(
   "mongodb+srv://Dwaylan:" +
     process.env.MONGO_ATLAS_PASSWORD +
-    "@beta-game-rest-api.xwhsr7t.mongodb.net/?retryWrites=true&w=majority&appName=beta-game-rest-api"
+    "@beta-game-rest-api.xwhsr7t.mongodb.net/?retryWrites=true&w=majority&appName=beta-game-rest-api",
+  {
+    useMongoClient: true,
+  }
 );
 
 // the use method sets up middlewear to forward requests.
