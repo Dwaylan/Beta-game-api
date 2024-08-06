@@ -6,11 +6,9 @@ const characterSchema = mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
   name: String,
   description: String,
-  gender: String,
   affinity: String,
   HP: Number,
   MP: Number,
-  skills: String,
 });
 
 module.exports = mongoose.model("Character", characterSchema);
