@@ -25,7 +25,7 @@ const getAttackById = (req, res) => {
 const addNewAttack = (req, res) => {
   // Setting the template for the request object body
   // These are the destructured key values
-  const { name, affinity, mp, lvl, description } = req.body;
+  const { name, affinity, mp, lvl, description, damage } = req.body;
   // Checking to see if name exist
   pool.query(queries.checkAttackExist, [name], (error, results) => {
     if (results.rows.length) {
@@ -34,7 +34,7 @@ const addNewAttack = (req, res) => {
     // Adding new character after the name check function has run
     pool.query(
       queries.addNewAttack,
-      [name, affinity, mp, lvl, description],
+      [name, affinity, mp, lvl, description, damage],
       (error, results) => {
         if (error) throw error;
         res.status(201).send("Attack creation successful");

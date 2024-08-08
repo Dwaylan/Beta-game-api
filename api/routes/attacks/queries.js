@@ -7,7 +7,7 @@ const checkAttackExist = " SELECT s from attacks s WHERE s.name = $1";
 
 // The $1-4 are holding the 4 parameters that are being passed in
 const addNewAttack =
-  " INSERT INTO attacks (name, affinity, mp, lvl, description) VALUES ($1, $2, $3, $4, $5)";
+  " INSERT INTO attacks (name, affinity, mp, lvl, description, damage) VALUES ($1, $2, $3, $4, $5, $6)";
 
 const deleteAttack = " DELETE FROM attacks WHERE id = $1 ";
 
