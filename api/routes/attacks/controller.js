@@ -1,89 +1,91 @@
 const pool = require("../database");
 const queries = require("./queries");
 
-const getCharaters = (req, res) => {
+const getAttacks = (req, res) => {
   // leveraging our postgres database to retrieve information
   // *** Important to note that queries are being held in a separate file ***
-  pool.query(queries.getCharacters, (error, results) => {
+  pool.query(queries.getAttacks, (error, results) => {
     if (error) throw error;
     res.status(200).json(results.rows);
   });
+
+  //   res.send("using NEW api route for weapons ");
 };
 
 // Controller for retrieving a single character
-const getCharacterById = (req, res) => {
+const getAttackById = (req, res) => {
   const id = parseInt(req.params.id);
-  pool.query(queries.getCharacterById, [id], (error, results) => {
+  pool.query(queries.getAttackById, [id], (error, results) => {
     if (error) throw error;
     res.status(200).json(results.rows);
   });
 };
 
 // Controller for adding a new character
-const addNewCharacter = (req, res) => {
+const addNewAttack = (req, res) => {
   // Setting the template for the request object body
   // These are the destructured key values
-  const { name, description, affinity, hp, mp } = req.body;
+  const { name, affinity, mp, lvl, description } = req.body;
   // Checking to see if name exist
-  pool.query(queries.checkNameExist, [name], (error, results) => {
+  pool.query(queries.checkAttackExist, [name], (error, results) => {
     if (results.rows.length) {
-      res.send("This character already exists");
+      res.send("This attack already exists");
     }
     // Adding new character after the name check function has run
     pool.query(
-      queries.addNewCharacter,
-      [name, description, affinity, hp, mp],
+      queries.addNewAttack,
+      [name, affinity, mp, lvl, description],
       (error, results) => {
         if (error) throw error;
-        res.status(201).send("Character creation successful");
-        console.log("Character creation successful");
+        res.status(201).send("Attack creation successful");
+        console.log("Attack creation successful");
       }
     );
   });
 };
 
 // Controller for amending a character row
-const amendCharacter = (req, res) => {
+const amendAttack = (req, res) => {
   const id = parseInt(req.params.id);
   const { description, affinity, hp, mp } = req.body;
 
-  pool.query(queries.getCharacterById, [id], (error, results) => {
+  pool.query(queries.getAttackById, [id], (error, results) => {
     const noCharacterFound = !results.rows.length;
     if (noCharacterFound) {
-      res.send("Character does not exist");
+      res.send("Attack does not exist");
     }
     pool.query(
-      queries.amendCharacter,
+      queries.amendAttack,
       [description, affinity, hp, mp],
       (error, results) => {
         if (error) throw error;
-        res.status(200).send("Character updated successfully");
+        res.status(200).send("Attack updated successfully");
       }
     );
   });
 };
 
 // Controller for deleting a character
-const deleteCharacter = (req, res) => {
+const deleteAttack = (req, res) => {
   const id = parseInt(req.params.id);
   // Checking to see if character exist
-  pool.query(queries.getCharacterById, [id], (error, results) => {
-    const noCharacterFound = !results.rows.length;
-    if (noCharacterFound) {
-      res.send("Character does not exist");
+  pool.query(queries.getAttackById, [id], (error, results) => {
+    const noAttackFound = !results.rows.length;
+    if (noAttackFound) {
+      res.send("Attack does not exist");
     }
   });
   // Deleting character
-  pool.query(queries.deleteCharacter, [id], (error, results) => {
+  pool.query(queries.deleteAttack, [id], (error, results) => {
     if (error) throw error;
-    res.status(200).send("Character removed");
+    res.status(200).send("Attack removed");
   });
 };
 
 module.exports = {
-  getCharaters,
-  getCharacterById,
-  addNewCharacter,
-  amendCharacter,
-  deleteCharacter,
+  getAttacks,
+  getAttackById,
+  addNewAttack,
+  amendAttack,
+  deleteAttack,
 };
