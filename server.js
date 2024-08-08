@@ -30,3 +30,5 @@ app.use("/api/v1/weapons", weaponRoutes);
 app.listen(port, () => {
   console.log(`success. App is now listening on ${port}`);
 });
+
+module.exports = app;
