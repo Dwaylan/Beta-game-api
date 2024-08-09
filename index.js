@@ -9,6 +9,8 @@ const corsConfig = {
   methods: ["GET", "POST", "PUT", "DELETE"],
 };
 
+const sslRedirect = require("heroku-ssl-redirect");
+
 // Importing routes
 const characterRoutes = require("./api/routes/characters/characters.js");
 const attackRoutes = require("./api/routes/attacks/attacks.js");
@@ -24,6 +26,9 @@ app.use(cors(corsConfig));
 
 // Middlewear to parse response objects into JSON
 app.use(express.json());
+
+// enable ssl redirect
+app.use(sslRedirect());
 
 // Setting a default route with a request and response callback function
 app.get("/", (req, res) => {
