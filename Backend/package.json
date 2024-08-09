@@ -1,0 +1,24 @@
+{
+  "name": "rest-api-beta",
+  "version": "1.0.0",
+  "description": "Beta Restful API ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index",
+    "start-dev": "nodemon index"
+  },
+  "author": "Dwaylan Applewhite",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "heroku-ssl-redirect": "^0.1.1",
+    "morgan": "^1.10.0",
+    "pg": "^8.12.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.1.0",
+    "nodemon": "^3.1.4"
+  }
+}
