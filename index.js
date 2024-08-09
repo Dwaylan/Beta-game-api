@@ -9,7 +9,7 @@ const corsConfig = {
   methods: ["GET", "POST", "PUT", "DELETE"],
 };
 
-const sslRedirect = require("heroku-ssl-redirect");
+const sslRedirect = require("heroku-ssl-redirect").default;
 
 // Importing routes
 const characterRoutes = require("./api/routes/characters/characters.js");
