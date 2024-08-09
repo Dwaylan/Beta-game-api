@@ -18,8 +18,6 @@ const weaponRoutes = require("./api/routes/weapons/weapons.js");
 
 // Importing our app file with the node js syntax
 const app = express();
-
-// enable ssl redirect
 app.use(sslRedirect());
 
 // Establishing a port for the API to run on a built in node enviorment port OR our hardcoded 3000 port
