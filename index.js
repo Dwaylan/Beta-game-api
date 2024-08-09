@@ -27,8 +27,10 @@ app.use("/api/v1/attacks", attackRoutes);
 app.use("/api/v1/weapons", weaponRoutes);
 
 // using the listen method to start the server. Were passing the port as an argument. This is telling the server where to listen
-app.listen(port, () => {
-  console.log(`success. App is now listening on ${port}`);
-});
+if (require.main === module) {
+  app.listen(port, () => {
+    console.log(`success. App is now listening on ${port}`);
+  });
+}
 
 module.exports = app;
