@@ -8,7 +8,6 @@ const corsConfig = {
   credential: true,
   methods: ["GET", "POST", "PUT", "DELETE"],
 };
-app.use(cors(corsConfig));
 
 // Importing routes
 const characterRoutes = require("./api/routes/characters/characters.js");
@@ -20,6 +19,8 @@ const app = express();
 
 // Establishing a port for the API to run on a built in node enviorment port OR our hardcoded 3000 port
 const port = process.env.port || 3000;
+
+app.use(cors(corsConfig));
 
 // Middlewear to parse response objects into JSON
 app.use(express.json());
