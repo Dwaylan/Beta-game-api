@@ -27,7 +27,7 @@ app.use(express.json());
 
 // Setting a default route with a request and response callback function
 app.get("/", (req, res) => {
-  res.send("connection successful");
+  res.send("connection successful. welcome to beta RPG API");
 });
 
 // Connection to our separate routes within the route folder
